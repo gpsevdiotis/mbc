@@ -1,0 +1,85 @@
+{% extends 'BookRecommender/base.html' %}
+{% block title %}Book Search{% endblock title %}
+{% block css %}
+         body{
+                background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+            }
+          .col-md-3
+          {
+          display: inline-block;
+          margin-left:-4px;
+          }
+
+          .carousel-indicators .active {
+          background-color: blue;
+            }
+
+          .col-md-3 img{
+
+          width: 170px;
+          height: 200px;
+          }
+
+          body .carousel-indicator li{
+          background-color: blue;
+          }
+
+          body .carousel-indicators{
+          bottom: 0;
+          }
+
+          body .carousel-control-prev-icon,
+          body .carousel-control-next-icon{
+          background-color: blue;
+          }
+
+          .carousel-control-prev,
+          .carousel-control-next{
+          top: auto;
+          bottom: auto;
+          padding-top: 222px;
+          }
+        body .no-padding{
+           padding-left: 0,
+           padding-right: 0;
+           }
+
+        .wrapper{
+
+        margin-bottom:200px;
+        }
+        
+        .card{
+          aspect-ratio: 16 / 9;
+          max-width: 100%;
+ max-height: 100%;
+        }
+
+
+ {% endblock %}
+
+{% block content %}
+
+<form method="POST" >
+  {% csrf_token %}
+  <input type="text" name="textfield">
+  
+  <button type="submit">Upload text</button>
+  </form>
+
+
+<div class="container wrapper">
+<h3 class="my-4 border-bottom pb-1"> Search result for {{request.GET.inputbook}}. </h3>
+{% for book in data %}
+<div class="col-4 mb-2">
+  <div class="card" style="width: 18rem">
+          <small class="text-muted">{{book.title}}</small>
+          <img class="card-img-top" src="{{book.thumbnail}}"  alt="Card image cap" height="250px" width="200px">           
+          <div class="card-footer">
+          <small class="text-muted">{{book.categories}}</small>
+          <small class="text-muted">{{book.num_pages}}</small>
+          </div>
+  </div>
+</div>
+{%endfor%}
+ {% endblock %}

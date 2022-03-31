@@ -1,0 +1,71 @@
+{% extends 'BookRecommender/base.html' %}
+{% block title %}Recommendations{% endblock title %}
+        
+ {% block content %}
+
+ 
+ <section class="page-section" id="contact">
+  <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-lg-8 col-xl-6 text-center">
+              <h2 class="text-white mt-0">Select the category you wish to get recommendations</h2>
+              <hr class="divider" /> 
+          </div>
+      </div>
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-lg-15 text-center">
+            {% for category in categories %}
+            <a class="btn btn-primary mb-4" href="/categories/{{category}}">{{ category }}</a>
+            {% endfor %}
+          </div>
+      </div>
+  </div>
+</section>
+
+<footer class="bg-light py-5">
+  <div class="container px-4 px-lg-5">
+      <div class="small text-center text-muted">MyBookChoice</div>
+  </div>
+</footer>
+ <!--
+<section class="page-section bg-primary h-100" id="about">
+  <div class="container px-4 px-lg-5 h-100">
+      <div class="row gx-4 gx-lg-10 justify-content-center">
+          <div class="col-lg-20 text-center">
+              <!--{% for category in categories %}
+              <a class="btn btn-primary" href="/category/{{category}}">{{ category }}</a>
+              {% endfor %} --> 
+          
+<!--
+ <div class="container wrapper">
+-->
+ 
+
+        <!---start popular subject section ----><!--
+        <div class="popular_subject_container">
+          
+                <div class="subject_title">
+                  <h2 class="subject_topics">Popular Subjects</h2>
+          
+                  <div class="">
+                    {% for category in categories %}
+          
+                    <a class="btn btn-outline-dark" href="/category/{{category}}">{{ category }}</a>
+          
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+
+-->
+
+
+ {% endblock %}
+
+
+
+
+
+
+

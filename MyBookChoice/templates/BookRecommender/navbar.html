@@ -1,0 +1,65 @@
+<!-- 
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'home' %}">MyBookChoice</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      {% if  request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="">Recommendations</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      {% endif %}
+      {%if not request.user.is_authenticated%}
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{%url 'login'%}">Login</a>
+      </li>
+      {%endif%}
+      <form class="form-inline my-2 my-lg-0" action="/search">
+        <div class="input-group">
+          <input name="inputbook" type="text" class="form-control" placeholder="Search Book">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</nav>
+
+<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+
+  <span class="text-light font-weight-bold">&copy All Right Reserved 2021-2022</span>
+      
+  </nav>
+-->
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3 bg-dark" id="mainNav">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="{% url 'home' %}">MyBookChoice</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                {% if  request.user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                {%endif%}
+                {%if not request.user.is_authenticated%}
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign-Up</a></li
+                {%endif%}
+            </ul>
+        </div>
+    </div>
+</nav>
