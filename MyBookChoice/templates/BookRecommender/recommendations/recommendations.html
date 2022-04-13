@@ -1,0 +1,33 @@
+{% extends "BookRecommender/base.html" %} {% block content %} <title> {{page_title}} </title>
+<section class="page-section">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-8 col-xl-6 text-center">
+        <h2 class="text-white mt-0">{{page_heading}}</h2>
+        <hr class="divider" />
+      </div>
+    </div> {% for i, book in recommendations.iterrows %} <div class="card mh-100 mb-4 justify-content-center">
+      <div class="row no-gutters ">
+        <div class="col-md-4">
+          <img src="{{book.thumbnail}}" class="card-img" alt="Image not found">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title">{{book.title}}</h4>
+            <h5 class="card-title">{{book.subtitle}}</h5>
+            <p class="card-text">Published year: {{book.published_year}}</p>
+            <p class="card-text">Number of Pages: {{book.num_pages}}</p>
+            <p class="card-text">Average Rating: {{book.average_rating}}</p>
+            <p class="card-text">{{book.description}}</p>
+            <a href="https://www.amazon.co.uk/s?k={{book.title}}" class="btn btn-primary">Search on Amazon</a> {% if user.is_authenticated %} {% if book.isbn10 in reading_list %} <a href="{% url 'remove_from_readlist' bookid=book.isbn10 %}" class="btn btn-danger">Remove from Reading List</a> {% else %} <a href="{% url 'add_to_readlist' bookid=book.isbn10 %}" class="btn btn-primary">Add to Reading List</a> {% endif %} {% else %} <a href="{% url 'login' %}" target="_blank" class="btn btn-primary">Add to Reading List</a> {% endif %}
+          </div>
+        </div>
+      </div>
+    </div> {%endfor%}
+  </div>
+</section>
+<footer class="bg-light py-5">
+  <div class="container px-4 px-lg-5">
+    <div class="small text-center text-muted">MyBookChoice</div>
+  </div>
+</footer> {%endblock%}

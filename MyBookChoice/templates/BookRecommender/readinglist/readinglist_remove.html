@@ -1,0 +1,35 @@
+{% extends 'BookRecommender/base.html' %} {% block content %} <title>{{page_title}} </title>
+<body id="page-top">
+  <!-- Navigation-->
+  <!-- Masthead-->
+  <header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+      <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-8 align-self-end">
+          <h1 class="text-white font-weight-bold">Do you wish to remove <br> {{detail_dict.title}}
+            <br> from your Reading List ?
+          </h1>
+          <hr class="divider" />
+        </div>
+        <div class="col-lg-10">
+          <img src="{{detail_dict.image}}" alt="" style='width:100%%;height:50%;'>
+          <p class="text-white-75 mt-5">Remove book <br>or <br> Return to the previous page </p>
+          <a href="{% url 'removed' bookid=detail_dict.bookid %}?next={{ request.META.HTTP_REFERER }}" class="btn btn-danger mb-3">Remove Book</a>
+          <br>
+          <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Footer-->
+  <footer class="bg-light py-5">
+    <div class="container px-4 px-lg-5">
+      <div class="small text-center text-muted">MyBookChoice</div>
+    </div>
+  </footer>
+</body>
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script> {% endblock %}

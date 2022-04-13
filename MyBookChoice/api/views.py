@@ -3,33 +3,28 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
-
 from .models import Book
 from .serializers import BookSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
 from rest_framework import permissions
 
 
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
-        'List': 'list/',
-        'Detail View': '/detailed/book:isbn10/',
-        'Add': '/add/',
-        'Update': 'list/update/book:isbn10',
-        'Delete': 'list/delete/book:isbn10'
+        'Book List': 'book/',
+        'Book Detail View': '/book/book:isbn10/',
+        'Add Book': '/book-add/',
     }
     return Response(api_urls)
 
 
 class BookList(APIView):
     """
-    List all snippets, or create a new snippet.
+    List all books, or create a new book.
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
@@ -61,7 +56,7 @@ class BookAdd(APIView):
 
 class BookDetail(APIView):
     """
-    Retrieve, update or delete a snippet instance.
+    Retrieve, update or delete a book instance.
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 

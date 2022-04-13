@@ -1,0 +1,23 @@
+{% extends 'BookRecommender/base.html' %} {% block content %} <title> MyBookChoice | Signup </title>
+<header class="masthead">
+  <div class="container px-4 px-lg-5 h-100">
+    <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+      <div class="col-lg-8 align-self-end"> {% if messages %} {%for msg in messages%} {% if msg %} <div class="alert alert-{{msg.tags}} alert-dismissible fade show font-weight-bold text-primary w-50 ml-3 mt-5">{{msg}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> {% endif %} {%endfor%} {% endif %} <form action="" method="post" novalidate> {% csrf_token %} {% for fm in form %} <span class="text-light mb-5">{{fm.label_tag}}</span>
+          <div class="form-group mb-4">
+            {{fm}}
+          </div> {% if fm.errors %} <div class="alert alert-danger lert-dismissible fade show">
+            {{fm.errors|striptags}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </div> {% endif %} {% endfor %} <br />
+          <input type="submit" value="Create Account" class="btn btn-primary">
+        </form>
+      </div>
+      <div class="col-lg-8 align-self-baseline"></div>
+    </div>
+  </div>
+</header> {% endblock content %}

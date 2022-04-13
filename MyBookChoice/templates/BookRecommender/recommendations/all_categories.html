@@ -1,0 +1,19 @@
+{% extends 'BookRecommender/base.html' %} {% block content %} <title>{{page_title}} </title>
+<section class="page-section" id="contact">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-8 col-xl-6 text-center">
+        <h2 class="text-white mt-0">Select the category <br> you wish to get recommendations: </h2>
+        <hr class="divider" />
+      </div>
+    </div>
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-15 text-center"> {% for category in categories %} <a class="btn btn-primary mb-4" href="/categories/{{category}}">{{ category }}</a> {% endfor %} </div>
+    </div>
+  </div>
+</section>
+<footer class="bg-light py-5">
+  <div class="container px-4 px-lg-5">
+    <div class="small text-center text-muted">MyBookChoice</div>
+  </div>
+</footer> {% endblock %}

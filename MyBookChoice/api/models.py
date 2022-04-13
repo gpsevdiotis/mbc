@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 
 
 class Book(models.Model):
-    isbn13 = models.TextField()
     isbn10 = models.TextField()
     title = models.TextField()
     subtitle = models.TextField()
@@ -23,10 +22,10 @@ class Book(models.Model):
         return str(self.pk)
 
 
-'''
-class Rating(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, default=None)
-    rating = models.CharField(max_length=70)
-    rated_date = models.DateTimeField(auto_now_add=True)
-'''
+class ReadingList(models.Model):
+    user = models.CharField(max_length=300, blank=True, default=None)
+    readlist = models.CharField(max_length=3000, blank=True, default=None)
+    added_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user

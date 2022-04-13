@@ -1,0 +1,51 @@
+{% extends "BookRecommender/base.html" %} {% block content %} <title> {{page_title}} </title>
+<section class="page-section">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-8 col-xl-6 text-center">
+        <h2 class="text-white mt-0">Profile Information:</h2>
+        <hr class="divider" />
+      </div>
+    </div>
+    <div class="card mh-100 mb-4 justify-content-center">
+      <div class="row ">
+        <div class="col-md-12 ">
+          <div class="card-body">
+            <p class="card-text">First Name: {{request.user.first_name}}</p>
+            <p class="card-text">Last Name: {{request.user.last_name}}</p>
+            <p class="card-text">Email: {{request.user.email}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> {% if reading_list|length > 0 %} <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-lg-8 col-xl-6 text-center">
+        <h2 class="text-white mt-0">Reading List:</h2>
+        <hr class="divider" />
+      </div>
+    </div> {% for i, book in readlist.iterrows %} <div class="card mh-100 mb-4 justify-content-center">
+      <div class="row no-gutters ">
+        <div class="col-md-4">
+          <img src="{{book.thumbnail}}" class="card-img" alt="Image not found">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title">{{book.title}}</h4>
+            <h5 class="card-title">{{book.subtitle}}</h5>
+            <p class="card-text">Published year: {{book.published_year}}</p>
+            <p class="card-text">Number of Pages: {{book.num_pages}}</p>
+            <p class="card-text">Average Rating: {{book.average_rating}}</p>
+            <p class="card-text">{{book.description}}</p>
+            <a href="https://www.amazon.co.uk/{{book.title}}" class="btn btn-primary">Search on Amazon</a> {% if user.is_authenticated %} {% if book.isbn10 in reading_list %} <a href="{% url 'remove_from_readlist' bookid=book.isbn10 %}" class="btn btn-danger">Remove from Reading List</a> {% else %} <a href="{% url 'add_to_readlist' bookid=book.isbn10 %}" class="btn btn-primary">Add to Reading List</a> {% endif %} {% else %} <a href="{% url 'login' %}" target="_blank" class="btn btn-primary">Add to Reading List</a> {% endif %}
+          </div>
+        </div>
+      </div>
+    </div> {%endfor%} {% endif %}
+  </div>
+</section>
+<footer class="bg-light py-5">
+  <div class="container px-4 px-lg-5">
+    <div class="small text-center text-muted">MyBookChoice</div>
+  </div>
+</footer> {% endblock content %}

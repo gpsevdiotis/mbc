@@ -44,6 +44,9 @@ class ForgotPasswordForm(AuthenticationForm):
         fields = ['username', 'password']
 
 
+# Furhter improvement to the Collaborative Filtering Method
+# System gathers ratings and then according to the user ratings
+# it would be able to give recommendations based on the system's user's ratings
 '''
 class AddRatingForm(forms.ModelForm):
 
